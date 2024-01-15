@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "fast-project"
+version = "0.1.0"
+description = ""
+authors = ["sds7629 <sds7629@naver.com>"]
+readme = "README.md"
+packages = [{include = "fast_project"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.109.0"
+uvicorn = {extras = ["standard"], version = "^0.25.0"}
+sqlalchemy = "^2.0.25"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
