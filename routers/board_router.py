@@ -12,6 +12,7 @@ app = APIRouter(
 )
 
 
+# test
 @app.post(path="/create", description="게시판 글 생성")
 async def create_new_post(new_post: NewPost, db: Session = Depends(get_db)):
     return board_crud.insert_post(new_post, db)
