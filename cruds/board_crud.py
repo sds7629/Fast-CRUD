@@ -69,3 +69,18 @@ def del_post(post_pk: int, db: Session):
 
     except Exception as e:
         return str(e)
+
+
+def real_del_post(post_pk: int, db: Session):
+    post = (
+        db.query(Board).filter(and_(Board.pk == post_pk, Board.del_yn == "N")).first()
+    )
+
+    try:
+        if not post:
+            raise Exception("존재하지 않는 게시글")
+        db.delete(post)
+        db.commit()
+        return {"msg": "존재하지 않는 게시글"}
+    except Exception as e:
+        return str(e)
