@@ -14,3 +14,17 @@ class PostList(BaseModel):
     writer: str
     title: str
     date: datetime
+
+
+class Post(BaseModel):
+    pk: int
+    writer: str
+    title: str
+    content: str
+    date: datetime
+
+
+class UpdatePost(BaseModel):
+    pk: int
+    title: str
+    content: Optional[str] = None
