@@ -4,7 +4,7 @@ from db.connection import Base
 
 
 class Board(Base):
-    __tablename__ = "Board"
+    __tablename__ = "Boards"
 
     pk = Column(Integer, primary_key=True, autoincrement=True)
     writer = Column(VARCHAR(30), nullable=False)
