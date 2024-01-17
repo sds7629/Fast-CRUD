@@ -2,6 +2,11 @@ from pydantic import BaseModel, EmailStr, validator
 from fastapi import HTTPException
 
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
 class NewUserForm(BaseModel):
     email: str
     name: str

@@ -1,8 +1,16 @@
+import os
 from sqlalchemy.orm import Session
 from db.connection import get_db
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
 from schema import user_schema
 from cruds import user_crud
+from dotenv import load_dotenv
+
+load_dotenv()
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
+ACCESS_TOKEN_EXPIRE_MINUTES = float(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
 
 
 app = APIRouter(prefix="/user")
