@@ -1,5 +1,5 @@
 import os
-import datetime
+from datetime import datetime
 from jose import jwt, JWTError
 from datetime import timedelta
 from sqlalchemy.orm import Session
@@ -57,9 +57,9 @@ async def login(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid user or password"
         )
 
-    res = user_crud.verify_password(login_form.password, user.hashed_password)
+    res = user_crud.verify_password(login_form.password, user.hashed_pw)
 
-    access_token_expires = timedelta(MINUTE=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": user.user_name}, expires_delta=access_token_expires
     )

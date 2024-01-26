@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from db.connection import get_db
-
+from typing import Optional
 from fastapi import APIRouter, Depends
 from schema.board_schema import NewPost, PostList, Post, UpdatePost
 from sqlalchemy.orm import Session
@@ -19,7 +19,10 @@ async def create_new_post(new_post: NewPost, db: Session = Depends(get_db)):
 
 
 @app.get(path="/read", description="게시글 조회", response_model=PostList)
-async def read_all_post(db: Session = Depends(get_db)):
+async def read_all_post(db: Session = Depends(get_db), q: Optional[str] = None):
+    if q:
+        lists = board_crud.list_all_post(db)
+        return lists[q]
     return board_crud.list_all_post(db)
 
 
